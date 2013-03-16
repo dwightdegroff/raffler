@@ -1,0 +1,34 @@
+<div id="container">
+  <h1>Raffler</h1>
+  <p id="notice"><%= flash[:notice] %></p>
+  
+  <%= form_for(@entry) do |f| %>
+  
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <%= f.submit "Add", class: "btn btn-large btn-primary" %>
+  <% end %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Winner</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= entry.name %></td>
+      <td><%= if entry.winner? then "WINNER" end %>
+      
+    </tr>
+  <% end %>
+  </table>
+  
+  <br />
+  
+  <%= button_to "Select Winner", {:controller => 'entries', :action => 'winner'} %>
+</div>
+
